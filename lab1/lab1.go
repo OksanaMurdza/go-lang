@@ -18,8 +18,8 @@ func Match(in, template rune) bool {
 }
 
 func TemplateSubstr(in, template string) string {
-	var buffer []rune
-	j := 0
+	buffer := make ([]rune, len ([]rune (in)))
+	i, j := 0, 0
 	templateR := []rune(template)
 	maxLen := len(templateR)
 	templateEnd := func() bool {
@@ -33,7 +33,8 @@ func TemplateSubstr(in, template string) string {
 				j++
 			}
 		}
-		buffer = append(buffer, ch)
+		buffer[i] = ch
+		i++
 	}
 	for _, ch := range in {
 		if Match(ch, templateR[j]) {
@@ -42,14 +43,14 @@ func TemplateSubstr(in, template string) string {
 				if starContext {
 					return in
 				}
-				return string(buffer)
+				return string(buffer[:i])
 			}
 		} else {
 			break
 		}
 	}
 	if templateEnd() {
-		return string(buffer)
+		return string(buffer[:i])
 	}
 	return ""
 }
