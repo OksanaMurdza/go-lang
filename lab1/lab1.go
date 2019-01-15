@@ -33,7 +33,8 @@ func TemplateSubstr(in, template string) string {
 				j++
 			}
 		}
-		buffer[i++] = ch
+		buffer[i] = ch
+		++i
 	}
 	for _, ch := range in {
 		if Match(ch, templateR[j]) {
