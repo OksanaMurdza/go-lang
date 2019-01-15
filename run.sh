@@ -15,4 +15,4 @@ do
   echo $INPUT >> $TESTFILE
   i=`expr $i + 1`
 done
-./golang-labs -cpuprofile prof.log -template $TEMP $TESTFILE &
+./go-lang -cpuprofile prof.log -template $TEMP $TESTFILE
